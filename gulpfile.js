@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const plumber = require('gulp-plumber');
 const newer = require('gulp-newer');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
@@ -15,6 +16,7 @@ const paths = {
 };
 gulp.task('babel', () =>
   gulp.src(paths.es6)
+    .pipe(plumber())
     .pipe(newer(paths.es5))
     .pipe(sourcemaps.init())
     .pipe(babel({ presets: ['node5'] }))
