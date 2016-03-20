@@ -1,0 +1,22 @@
+{
+  "name": "disposable-email",
+  "version": "0.0.1",
+  "description": "Generate disposable email addresses",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canac/disposable-email.git"
+  },
+  "keywords": [
+    "email"
+  ],
+  "author": "Caleb Cox <calebcox314@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/canac/disposable-email/issues"
+  },
+  "homepage": "https://github.com/canac/disposable-email#readme"
+}
