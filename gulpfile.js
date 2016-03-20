@@ -32,4 +32,4 @@ gulp.task('watch', ['babel', 'lint'], () => {
   gulp.watch(paths.es6, ['babel']);
   gulp.watch(['gulpfile.js', paths.es6], ['lint']);
 });
-gulp.task('default', ['watch']);
+gulp.task('default', ['babel', 'lint']);
