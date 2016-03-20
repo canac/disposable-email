@@ -2,9 +2,11 @@
   "name": "disposable-email",
   "version": "0.0.1",
   "description": "Generate disposable email addresses",
-  "main": "app.js",
+  "main": "es5/app.js",
   "scripts": {
-    "start": "node ."
+    "build": "gulp babel",
+    "start": "node .",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/canac/disposable-email/issues"
   },
-  "homepage": "https://github.com/canac/disposable-email#readme"
+  "homepage": "https://github.com/canac/disposable-email#readme",
+  "devDependencies": {
+    "babel-preset-node5": "^11.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-newer": "^1.1.0",
+    "gulp-sourcemaps": "^1.6.0"
+  }
 }
