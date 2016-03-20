@@ -19,7 +19,7 @@ gulp.task('babel', () =>
     .pipe(plumber())
     .pipe(newer(paths.es5))
     .pipe(sourcemaps.init())
-    .pipe(babel({ presets: ['node5'] }))
+    .pipe(babel())
     .pipe(sourcemaps.write('.', { sourceRoot: paths.sourceRoot }))
     .pipe(gulp.dest(paths.es5))
 );
