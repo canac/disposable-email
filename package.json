@@ -22,6 +22,9 @@
     "url": "https://github.com/canac/disposable-email/issues"
   },
   "homepage": "https://github.com/canac/disposable-email#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
   "devDependencies": {
     "babel-preset-node5": "^11.0.0",
     "eslint": "^2.4.0",
