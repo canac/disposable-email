@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const newer = require('gulp-newer');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
+const eslint = require('gulp-eslint');
 
 const path = require('path');
 
@@ -20,7 +21,13 @@ gulp.task('babel', () =>
     .pipe(sourcemaps.write('.', { sourceRoot: paths.sourceRoot }))
     .pipe(gulp.dest(paths.es5))
 );
-gulp.task('watch', ['babel'], () =>
-  gulp.watch(paths.es6, ['babel'])
+gulp.task('lint', () =>
+  gulp.src(['gulpfile.js', paths.es6])
+    .pipe(eslint())
+    .pipe(eslint.format())
 );
+gulp.task('watch', ['babel', 'lint'], () => {
+  gulp.watch(paths.es6, ['babel']);
+  gulp.watch(['gulpfile.js', paths.es6], ['lint']);
+});
 gulp.task('default', ['watch']);
