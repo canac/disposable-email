@@ -1,15 +1,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import shortid from 'shortid';
+import * as authentication from './authentication.js';
 import configuration from './configuration.js';
 import models from './models.js';
 
 // Connect to the database
 mongoose.connect(`${configuration.mongodb.host}/${configuration.mongodb.db}`);
 
+authentication.setup();
+
 const { Email } = models;
 
 const app = express();
+app.use(authentication.middleware());
 
 // Generate a new random email address
 app.get('/generate', (req, res, next) => {
