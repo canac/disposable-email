@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import shortid from 'shortid';
 import * as authentication from './authentication.js';
 import configuration from './configuration.js';
-import models from './models.js';
+import { Email } from './models.js';
 
 // Connect to the database
 const mongodbUri = `${configuration.mongodb.host}/${configuration.mongodb.db}`;
@@ -15,8 +15,6 @@ const MongoDBStore = mongodbSession(session);
 const sessionStore = new MongoDBStore({ uri: mongodbUri, collection: 'sessions' });
 
 authentication.setup();
-
-const { Email } = models;
 
 const app = express();
 app.use(cookieParser());

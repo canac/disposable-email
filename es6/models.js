@@ -9,6 +9,6 @@ const Email = mongoose.model('email', new Schema({
   domain: { type: String, required: true },
 }));
 
-export default {
+export {
   Email,
 };
