@@ -36,8 +36,10 @@ app.get('/generate', authentication.authenticated(), (req, res, next) => {
     next(new Error('No domain provided'));
   }
 
-  // Try to find an existing email address associated with this domain
-  Email.find({ domain }).then(emails => {
+  const userId = req.user.id;
+
+  // Try to find an existing email address associated with this user and the domain
+  Email.find({ userId, domain }).then(emails => {
     if (emails.length > 0) {
       // Use the found email address
       return emails[0];
@@ -45,6 +47,7 @@ app.get('/generate', authentication.authenticated(), (req, res, next) => {
 
     // Generate a new email address
     const newEmail = new Email({
+      userId,
       address: `${shortid.generate()}@${configuration.domain}`,
       domain,
     });
