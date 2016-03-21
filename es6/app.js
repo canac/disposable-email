@@ -1,3 +1,4 @@
+import mongodbSession from 'connect-mongodb-session';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import session from 'express-session';
@@ -8,7 +9,10 @@ import configuration from './configuration.js';
 import models from './models.js';
 
 // Connect to the database
-mongoose.connect(`${configuration.mongodb.host}/${configuration.mongodb.db}`);
+const mongodbUri = `${configuration.mongodb.host}/${configuration.mongodb.db}`;
+mongoose.connect(mongodbUri);
+const MongoDBStore = mongodbSession(session);
+const sessionStore = new MongoDBStore({ uri: mongodbUri, collection: 'sessions' });
 
 authentication.setup();
 
@@ -16,7 +20,13 @@ const { Email } = models;
 
 const app = express();
 app.use(cookieParser());
-app.use(session({ secret: configuration.session.secret, resave: false, saveUninitialized: false }));
+app.use(session({
+  secret: configuration.session.secret,
+  cookie: { maxAge: configuration.session.maxAge },
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+}));
 app.use(authentication.middleware());
 
 // Generate a new random email address
