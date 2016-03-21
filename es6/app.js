@@ -1,4 +1,6 @@
+import cookieParser from 'cookie-parser';
 import express from 'express';
+import session from 'express-session';
 import mongoose from 'mongoose';
 import shortid from 'shortid';
 import * as authentication from './authentication.js';
@@ -13,6 +15,8 @@ authentication.setup();
 const { Email } = models;
 
 const app = express();
+app.use(cookieParser());
+app.use(session({ secret: configuration.session.secret, resave: false, saveUninitialized: false }));
 app.use(authentication.middleware());
 
 // Generate a new random email address

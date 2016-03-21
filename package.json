@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/canac/disposable-email#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "mongoose": "^4.4.8",
     "passport": "^0.3.2",
     "passport-auth0": "^0.5.1",
