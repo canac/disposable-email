@@ -30,7 +30,7 @@ app.use(session({
 app.use(authentication.middleware());
 
 // Generate a new random email address
-app.get('/generate', (req, res, next) => {
+app.get('/generate', authentication.authenticated(), (req, res, next) => {
   const { domain } = req.query;
   if (!domain) {
     next(new Error('No domain provided'));

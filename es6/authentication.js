@@ -34,3 +34,14 @@ export function middleware() {
 
   return router;
 }
+
+// Return authentication express middleware that will ensure that the user is logged in
+export function authenticated() {
+  return (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
